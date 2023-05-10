@@ -8,10 +8,8 @@ public class Ball : MonoBehaviour
 
     public GameManager.PathColor color;
 
-    private Vector3 startPosition;
-    private float swipeThreshold = 50f;
-
-    private bool hasSwiped = false;
+    private bool isAllowedSwiping = true;
+    public bool isTouching;
 
     public Path path;
 
@@ -20,6 +18,15 @@ public class Ball : MonoBehaviour
     Renderer objectRenderer;
     private Material objectsMaterial;
     [SerializeField] private Material rainbowMaterial;
+
+
+    private Vector2 fingerDownPosition;
+    private Vector2 fingerMovePosition;
+
+    [SerializeField]private float minDistanceForSwipe = 100f;
+
+    [SerializeField] private float distanceToTeleport;
+    [SerializeField] private float rotationCooldown;
 
     private enum SwipeDirection
     {
@@ -33,85 +40,96 @@ public class Ball : MonoBehaviour
     {
         transform = GetComponent<Transform>();
         objectRenderer = GetComponent<Renderer>();
-        objectsMaterial = objectRenderer.material;       
-    }
-    private void OnMouseDown()
-    {
-        startPosition = Input.mousePosition;
+        objectsMaterial = objectRenderer.material;
+        distanceToTeleport = 3f;
     }
 
-    private void OnMouseDrag()
+    void Update()
     {
-        if (hasSwiped) return;
-        if (Vector3.Distance(Input.mousePosition, startPosition) > swipeThreshold)
+        if (!isTouching) return;
+
+        if (Input.touchCount == 1)
         {
-            Vector3 direction = Input.mousePosition - startPosition;
+            Touch touch = Input.GetTouch(0);
 
-            if (direction.x > 0)
+            if (touch.phase == TouchPhase.Began)
             {
-                StartCoroutine(StopSwiping());
-                CalculateDirection(SwipeDirection.right);
-                return;
+                fingerDownPosition = touch.position;
+                fingerMovePosition = touch.position;
             }
-            else if (direction.x < 0)
+
+            if(touch.phase == TouchPhase.Moved)
             {
-                StartCoroutine(StopSwiping());
-                CalculateDirection(SwipeDirection.left);
-                return;
-            }          
+                fingerMovePosition = touch.position;
+                float distance = Vector2.Distance(fingerDownPosition, fingerMovePosition);
+                if (distance > minDistanceForSwipe)
+                {
+                    CheckSwipe();
+                    fingerDownPosition = touch.position;
+                    
+                }
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                isTouching = false;
+            }
         }
     }
 
-    IEnumerator StopSwiping()
+    void CheckSwipe()
     {
-        startPosition = Input.mousePosition;
-        hasSwiped = true;
-        yield return new WaitForSeconds(1f);
-        hasSwiped = false;
+        if (!isAllowedSwiping) return;
+        Vector2 direction = fingerMovePosition - fingerDownPosition;
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                CalculateDirection(SwipeDirection.right);
+            }
+            else
+            {
+                CalculateDirection(SwipeDirection.left);
+            }
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                CalculateDirection(SwipeDirection.up);
+            }
+            else
+            {
+                CalculateDirection(SwipeDirection.down);
+            }
+        }
+        isAllowedSwiping = false;
+        StartCoroutine(RotationCooldown());
     }
 
     void CalculateDirection(SwipeDirection swipeDirection)
     {
-        float deltaX =  transform.position.x - path.transform.position.x ;
+        float deltaX = transform.position.x - path.transform.position.x;
+        float deltaZ = transform.position.z - path.transform.position.z;
 
-        SwipeDirection firstSwipeCondition;
+        SwipeDirection firstSwipeCondition = deltaX > 0 ? SwipeDirection.up : SwipeDirection.down;
+        SwipeDirection secondSwipeCondition = deltaZ > 0 ? SwipeDirection.left : SwipeDirection.right;
 
         
-        if (deltaX > 0)
-            firstSwipeCondition = SwipeDirection.right;
-        else
-            firstSwipeCondition = SwipeDirection.left;
 
-        if (swipeDirection == firstSwipeCondition)
-        {
-            path.Rotate(true);
-        }
-        else
-        {
-            path.Rotate(false);
-        }
+        bool shouldChangeRotatation = swipeDirection == firstSwipeCondition || swipeDirection == secondSwipeCondition;
+        path.Rotate(shouldChangeRotatation);
     }
-    public void MoveToPos(Vector3 targetPosition)
-    {
-        StartCoroutine(Move(targetPosition));
-    }
+
     public void MoveToPos(Transform targetTransform)
     {
+        if (Vector3.Distance(transform.position, targetTransform.position) > distanceToTeleport)
+        {
+            StartCoroutine(Teleport(targetTransform));
+        }
+            
         StartCoroutine(Move(targetTransform));
     }
 
-    private IEnumerator Move(Vector3 targetPosition)
-    {
-        Vector3 direction = targetPosition - transform.position;
-        direction.Normalize();
-
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-        {
-            transform.position += direction * speed * Time.deltaTime;
-
-            yield return null;
-        }
-    }
     private IEnumerator Move(Transform targetTransform)
     {
         yield return new WaitForSeconds(0.1f);
@@ -136,6 +154,47 @@ public class Ball : MonoBehaviour
         else
         {
             objectRenderer.material = objectsMaterial;
+        }
+    }
+
+    IEnumerator RotationCooldown()
+    {
+        isAllowedSwiping = false;
+        yield return new WaitForSeconds(rotationCooldown);
+        isAllowedSwiping = true;
+    }
+
+    IEnumerator Teleport(Transform targetTransform)
+    {
+
+        float fadeInTime = 0.25f; float waitTime = 0.1f; float fadeOutTime = 0.25f;
+
+        Renderer renderer = GetComponent<Renderer>();
+        Color startColor = renderer.material.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f); // fade in to full opacity
+        float elapsedTime = 0f;
+
+        // Fade in
+        while (elapsedTime < fadeInTime)
+        {
+            renderer.material.color = Color.Lerp(startColor, endColor, elapsedTime / fadeInTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Wait
+        transform.position = targetTransform.position;
+        yield return new WaitForSeconds(waitTime);
+
+        // Fade out
+        startColor = renderer.material.color;
+        endColor = new Color(startColor.r, startColor.g, startColor.b, 1f); // fade out to transparent
+        elapsedTime = 0f;
+        while (elapsedTime < fadeOutTime)
+        {
+            renderer.material.color = Color.Lerp(startColor, endColor, elapsedTime / fadeOutTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
     }
 }

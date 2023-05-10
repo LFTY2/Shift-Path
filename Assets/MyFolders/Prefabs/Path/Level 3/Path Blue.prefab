@@ -31,15 +31,15 @@ Transform:
   m_LocalScale: {x: 200, y: 200, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8343626682806229421}
-  - {fileID: 5768750417777730548}
-  - {fileID: 3327900868057459962}
-  - {fileID: 1375312899449686392}
-  - {fileID: 6497517068278579708}
-  - {fileID: 2091458719631637032}
-  - {fileID: 5505967580946126881}
-  - {fileID: 8549177901595042657}
   - {fileID: 1808819869046714850}
+  - {fileID: 8549177901595042657}
+  - {fileID: 5505967580946126881}
+  - {fileID: 2091458719631637032}
+  - {fileID: 6497517068278579708}
+  - {fileID: 1375312899449686392}
+  - {fileID: 3327900868057459962}
+  - {fileID: 5768750417777730548}
+  - {fileID: 8343626682806229421}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
@@ -111,6 +111,7 @@ MonoBehaviour:
   isDone: 0
   isNullPath: 0
   isPathFull: 1
+  isAllowedRotation: 0
   ballContainersFillType: 0
 --- !u!1001 &308004711133946315
 PrefabInstance:
@@ -121,7 +122,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 3
+      value: Ball Holder 7
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -129,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -187,7 +188,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 9
+      value: Ball Holder 1
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -195,7 +196,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -253,7 +254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 6
+      value: Ball Holder 4
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -261,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -319,7 +320,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 4
+      value: Ball Holder 6
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -327,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,7 +386,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 1
+      value: Ball Holder 9
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -393,7 +394,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -451,7 +452,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 8
+      value: Ball Holder 2
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -459,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -517,7 +518,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 7
+      value: Ball Holder 3
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -525,7 +526,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -649,7 +650,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1248921132194301146, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_Name
-      value: Ball Holder 2
+      value: Ball Holder 8
       objectReference: {fileID: 0}
     - target: {fileID: 2607332500098266070, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: path
@@ -657,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 2714766522074416592}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3056066808257596721, guid: bdc7f939745385f4199de40e32e511e9, type: 3}
       propertyPath: m_LocalPosition.x

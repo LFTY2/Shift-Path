@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2344312300357016926}
   - component: {fileID: 7195730268307155406}
   m_Layer: 0
-  m_Name: Ball Yellow
+  m_Name: Ball Blue
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8c5c9c195ed8a5042828cd2cd62e87ca, type: 2}
+  - {fileID: 2100000, guid: a1f05a649c6da61499f1bd6049baa6b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,10 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78005be3355c74048838408efa873f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 3
+  color: 1
   isTouching: 0
   path: {fileID: 0}
-  rainbowMaterial: {fileID: 2100000, guid: c0dda8b999f43fa4cb36450fe002e691, type: 2}
+  rainbowMaterial: {fileID: 2100000, guid: 64a213c8d430c7043a085a2be3176f83, type: 2}
   minDistanceForSwipe: 100
-  distanceToTeleport: 1000
-  rotationCooldown: 0.2
+  distanceToTeleport: 3
+  rotationCooldown: 0.5

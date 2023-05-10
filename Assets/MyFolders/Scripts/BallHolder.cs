@@ -7,7 +7,8 @@ public class BallHolder : MonoBehaviour
     public GameObject ball;
     [SerializeField] private GameObject[] ballPrefabs;
     private GameManager gameManager;
-    public Path path; 
+    public Path path;
+    
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();

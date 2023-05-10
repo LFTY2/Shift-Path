@@ -635,6 +635,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 423.4
       objectReference: {fileID: 0}
+    - target: {fileID: 626911724349745219, guid: 9c8c11fd8354922449cd0c9d4f4d8b62, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00024414062
+      objectReference: {fileID: 0}
     - target: {fileID: 626911724758886750, guid: 9c8c11fd8354922449cd0c9d4f4d8b62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -678,6 +682,10 @@ PrefabInstance:
     - target: {fileID: 626911724758886751, guid: 9c8c11fd8354922449cd0c9d4f4d8b62, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 338
+      objectReference: {fileID: 0}
+    - target: {fileID: 626911724926072699, guid: 9c8c11fd8354922449cd0c9d4f4d8b62, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00024414062
       objectReference: {fileID: 0}
     - target: {fileID: 626911724930263860, guid: 9c8c11fd8354922449cd0c9d4f4d8b62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -804,6 +812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 950191125}
   - component: {fileID: 950191124}
+  - component: {fileID: 950191126}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -842,6 +851,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950191126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950191123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30d9490c8cae9c449dfd0dc8573b811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1241,7 @@ MonoBehaviour:
   isDone: 0
   isNullPath: 1
   isPathFull: 1
+  isAllowedRotation: 0
   ballContainersFillType: 0
 --- !u!4 &1750779858
 Transform:

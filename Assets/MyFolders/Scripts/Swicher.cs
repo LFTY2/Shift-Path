@@ -29,11 +29,8 @@ public class Swicher : MonoBehaviour
             Ball ballScript1 = ball1.GetComponent<Ball>();
             Ball ballScript2 = ball2.GetComponent<Ball>();
 
-            Vector3 targetPosition1 = ballContainer2.transform.position;
-            Vector3 targetPosition2 = ballContainer1.transform.position;
-
-            ballScript1.MoveToPos(targetPosition1);
-            ballScript2.MoveToPos(targetPosition2);
+            ballScript1.MoveToPos(ballContainer2.transform);
+            ballScript2.MoveToPos(ballContainer1.transform);
 
             ballContainer1.ball = ball2;
             ballContainer2.ball = ball1;

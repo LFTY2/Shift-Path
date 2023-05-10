@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7195730268307155406}
   m_Layer: 0
   m_Name: Ball Blue
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,5 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 1
+  isTouching: 0
   path: {fileID: 0}
   rainbowMaterial: {fileID: 2100000, guid: 64a213c8d430c7043a085a2be3176f83, type: 2}
+  minDistanceForSwipe: 100
+  distanceToTeleport: 1000
+  rotationCooldown: 0.2

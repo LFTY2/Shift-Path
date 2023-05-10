@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class Conector : MonoBehaviour
+public class Connector : MonoBehaviour
 {
     float speed = 5;
 
@@ -17,6 +17,14 @@ public class Conector : MonoBehaviour
 
     [SerializeField] private Path nullPath;
 
+    public bool isTouching;
+    public bool isAlloweMoving = true;
+
+    public Vector2 fingerDownPosition;
+    private Vector2 fingerMovePosition;
+
+    private float minDistanceForSwipe = 150f;
+
     Position position = Position.Midle;
     enum Position
     {
@@ -25,11 +33,50 @@ public class Conector : MonoBehaviour
         Midle
     }
 
-    [SerializeField] GameObject construction;
     void Start()
     {
         pathRed.ballContainersAdditional = ballHolders1;
         pathBlue.ballContainersAdditional = ballHolders2;
+    }
+
+    void Update()
+    {
+        if (!isTouching) return;
+
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                fingerMovePosition = touch.position;
+                float distance = Vector2.Distance(fingerDownPosition, fingerMovePosition);
+                if (distance > minDistanceForSwipe)
+                {                    
+                    CheckSwipe();
+                    isTouching = false;
+                }
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                isTouching = false;
+            }
+        }
+    }
+
+    void CheckSwipe()
+    {
+        if (!isAlloweMoving) return;
+        Vector2 direction = fingerMovePosition - fingerDownPosition;
+        if (direction.x > 0)
+        {            
+            MoveRight();
+        }
+        else
+        {
+            MoveLeft();
+        }
+        StartCoroutine(MoveCooldown());
     }
 
     public void MoveLeft()
@@ -110,5 +157,12 @@ public class Conector : MonoBehaviour
         BallHolder[] reversedArray = (BallHolder[])originalArray.Clone();
         Array.Reverse(reversedArray);
         return reversedArray;
+    }
+
+    IEnumerator MoveCooldown()
+    {
+        isAlloweMoving = false;
+        yield return new WaitForSeconds(0.5f);
+        isAlloweMoving = true;
     }
 }

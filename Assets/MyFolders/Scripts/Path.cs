@@ -87,7 +87,7 @@ public class Path : MonoBehaviour
             lastContainer = ballContainersAll[0];
         }
         Ball tempFirstBallScript = tempFirstBall.GetComponent<Ball>();
-        tempFirstBallScript.MoveToPos(lastContainer.transform.position);
+        tempFirstBallScript.MoveToPos(lastContainer.transform);
         lastContainer.ball = tempFirstBall;
         tempFirstBallScript.ChangePath(lastContainer.path);
 
@@ -98,7 +98,7 @@ public class Path : MonoBehaviour
         GameObject nextBall = nextContainer.ball;
 
         Ball nextBallScript = nextBall.GetComponent<Ball>();
-        nextBallScript.MoveToPos(currentContainer.transform.position);
+        nextBallScript.MoveToPos(currentContainer.transform);
         currentContainer.ball = nextBall;
         nextBallScript.ChangePath(currentContainer.path);
         
@@ -123,6 +123,6 @@ public class Path : MonoBehaviour
         this.isDone = true;
         gameManager.CheckWin();
     }
-
+    
    
 }
